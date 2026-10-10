@@ -1,0 +1,14 @@
+{
+  "duration": 30,
+  "assertions": [
+    {"kind":"appearsBy","selector":"#market","bySec":1.0},
+    {"kind":"appearsBy","selector":"#wait","bySec":1.7},
+    {"kind":"appearsBy","selector":"#surface","bySec":4.7},
+    {"kind":"appearsBy","selector":"#see","bySec":7.5},
+    {"kind":"appearsBy","selector":"#viewTitle","bySec":10.9},
+    {"kind":"appearsBy","selector":"#faster","bySec":26.0},
+    {"kind":"appearsBy","selector":"#brand","bySec":28.0},
+    {"kind":"staysInFrame","selector":"#brand"},
+    {"kind":"staysInFrame","selector":"#studio"}
+  ]
+}

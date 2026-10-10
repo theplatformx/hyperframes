@@ -1,0 +1,15 @@
+node_modules/
+renders/
+snapshots/
+.hyperframes/
+assets/gsap.min.js
+assets/score.wav
+assets/score-premaster.wav
+assets/catalyst-source.mp3
+validation.json
+*.log
+__pycache__/
+AGENTS.md
+CLAUDE.md
+audio-cues.json
+index-video.html

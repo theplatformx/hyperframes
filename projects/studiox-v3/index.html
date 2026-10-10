@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>TradingView · StudioX Viewport</title>
+  <style>
+    @font-face{font-family:Display;src:url('assets/Display.ttf')}@font-face{font-family:Mono;src:url('assets/Mono.ttf')}@font-face{font-family:Serif;src:url('assets/Serif.ttf')}
+    *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#081321}
+    #film{width:100%;height:100%;position:relative;overflow:hidden;background:#081321;color:#f0f0ea;font-family:Display,sans-serif}
+    .clip,.scene,.world{position:absolute;inset:0;overflow:hidden}.scene{pointer-events:none}.mono{font-family:Mono,monospace;letter-spacing:.1em}.small{font-size:21px;color:#86a8b8}
+    .grid{position:absolute;inset:0;background-image:linear-gradient(#59839b20 1px,transparent 1px),linear-gradient(90deg,#59839b20 1px,transparent 1px);background-size:100px 100px}
+    .rim{position:absolute;inset:35px;border:1px solid #a9d6df25;pointer-events:none;z-index:90}.grain{position:absolute;inset:0;z-index:89;opacity:.08;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 3px,#fff 4px);mix-blend-mode:screen}
+    svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}path,line,circle,rect{vector-effect:non-scaling-stroke}
+    #act1{background:radial-gradient(ellipse at 64% 54%,#12334c 0%,#081321 67%)}
+    #chartWorld{transform-origin:960px 540px}#grid1 line,#grid2 line{stroke:#6490aa;stroke-width:1;opacity:.18}
+    #price{fill:none;stroke:#5de5e1;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 12px #5de5e188)}
+    #candles line{stroke-width:3}#candles rect{fill:#5de5e1}#candles .down{fill:#ff695d}
+    #signal{position:absolute;width:18px;height:18px;border-radius:50%;background:#f8ffff;box-shadow:0 0 0 9px #5de5e155,0 0 35px 15px #5de5e1;z-index:6;transform-origin:center}
+    #hook{position:absolute;inset:0;z-index:5}#hook .kicker{position:absolute;left:110px;top:84px;color:#5de5e1}
+    .hero{position:absolute;left:104px;line-height:.87;white-space:nowrap;letter-spacing:-.075em;font-size:190px;text-shadow:0 18px 42px #0007}
+    #market{top:292px}#wait{top:495px;color:#5de5e1;font-size:180px}
+    #surface{position:absolute;inset:75px 83px 72px;z-index:4;border:1px solid #375a72;border-radius:14px;background:#0a1d30bb;overflow:hidden;box-shadow:0 26px 90px #0009}
+    #surface header{height:72px;background:#0d2238;border-bottom:1px solid #375a72;display:flex;align-items:center;gap:35px;padding:0 35px;font-size:27px}
+    #surface header span{font:18px Mono,monospace;color:#89a3b4}#surface aside{position:absolute;right:0;top:72px;bottom:0;width:250px;background:#0e263d;border-left:1px solid #375a72;padding:30px;font:18px Mono,monospace;color:#e7f4fa}
+    #surface aside div{margin:26px 0;color:#8faebd}#surface aside b{color:#f0f6fb}
+    #toolrail{position:absolute;top:72px;bottom:0;left:0;width:63px;border-right:1px solid #375a72;display:flex;flex-direction:column;gap:32px;align-items:center;padding-top:38px;font:26px Mono;color:#9bb5bf}
+    #cursor{position:absolute;z-index:7;width:42px;height:42px;left:0;top:0;filter:drop-shadow(0 3px 4px #000a)}
+    #cross1,#cross2{stroke:#d9f9f3;stroke-width:1.6;stroke-dasharray:10 8;opacity:.7}#trend{stroke:#f2dc91;stroke-width:5;stroke-linecap:round;stroke-dasharray:900;stroke-dashoffset:900;filter:drop-shadow(0 0 8px #f2dc91)}
+    #see{position:absolute;z-index:6;left:168px;bottom:122px;font-size:85px;letter-spacing:-.06em;white-space:nowrap}
+    #wipe1,#wipe2{position:absolute;left:912px;top:492px;width:96px;height:96px;border-radius:50%;background:#5de5e1;z-index:10;box-shadow:0 0 80px #5de5e177}
+    #act2{z-index:12;background:#0b1c30}#act2 .kicker{position:absolute;left:105px;top:80px;color:#5de5e1}#viewTitle{position:absolute;left:105px;top:145px;font-size:110px;letter-spacing:-.07em}
+    #timeframes{position:absolute;top:203px;right:115px;display:flex;gap:12px}#timeframes span{border:1px solid #40637b;border-radius:5px;padding:14px 22px;color:#9db4c1;background:#112b42;font:20px Mono,monospace}.selected{background:#5de5e1!important;color:#071629!important;border-color:#5de5e1!important}
+    #graph{position:absolute;inset:300px 92px 191px;border-top:1px solid #35556a;border-bottom:1px solid #35556a;overflow:hidden}
+    #graphPath{stroke:#5de5e1;fill:none;stroke-width:7;stroke-linejoin:round;filter:drop-shadow(0 0 14px #5de5e188)}#graphFill{fill:#5de5e1;opacity:.07}
+    #scan{position:absolute;top:0;bottom:0;width:2px;background:#f4fff9;box-shadow:0 0 16px #5de5e1}
+    #viewFoot{position:absolute;bottom:83px;left:105px;color:#93adbd}#dataFoot{position:absolute;bottom:83px;right:105px;color:#93adbd;font-size:16px}
+    #panels{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:17px;z-index:5}.panel{width:31%;height:58%;position:relative;border:1px solid #5b8094;background:#122840;box-shadow:0 25px 80px #0009}.panel label{position:absolute;top:22px;left:25px;color:#d5eef0;font:19px Mono,monospace}.panel svg path{fill:none;stroke:#5de5e1;stroke-width:7}
+    #merge{position:absolute;top:537px;left:110px;width:1700px;height:7px;background:#5de5e1;box-shadow:0 0 20px #5de5e1;z-index:6;transform-origin:center}
+    #act3{z-index:15;background:#f0f0ea;color:#081321}#act3 .kicker{position:absolute;left:100px;top:70px;color:#2d6df6}#seam{position:absolute;top:536px;width:100%;height:8px;background:#2d6df6;box-shadow:0 0 22px #2d6df677}
+    .word{position:absolute;white-space:nowrap;line-height:.87;letter-spacing:-.09em}#great{left:92px;top:170px;font-size:188px}#ideas{left:92px;top:360px;font-size:257px;color:#2d6df6}
+    #should{left:92px;top:245px;font-size:188px}#move{left:688px;top:425px;font-size:221px;color:#2d6df6}#faster{left:65px;top:310px;font-size:307px;color:#2d6df6}
+    #speed{position:absolute;inset:0;pointer-events:none}#speed i{position:absolute;right:-120px;height:4px;background:#2d6df6;opacity:.28}
+    #endcard{position:absolute;inset:0;z-index:10;background:#0b1b2f;color:#f2f3ee}#brand{position:absolute;left:126px;top:230px;font-size:190px;letter-spacing:-.075em;white-space:nowrap}#brand em{font-style:normal;color:#5de5e1}
+    #tag{position:absolute;left:138px;top:479px;font:39px Serif,serif}#creditline{position:absolute;left:138px;top:648px;height:3px;width:0;background:#5de5e1}#studio{position:absolute;left:138px;bottom:175px;font-size:31px}
+    #foot{position:absolute;left:138px;right:138px;bottom:80px;display:flex;justify-content:space-between;gap:20px;font:14px Mono,monospace;color:#a2b9c7}
+  </style>
+  <script src="assets/gsap.min.js"></script>
+</head>
+<body>
+<div id="film" data-composition-id="studiox-v3" data-start="0" data-duration="30" data-width="1920" data-height="1080" data-fps="30">
+ <div id="picture" class="clip" data-start="0" data-duration="30" data-track-index="1">
+  <section id="act1" class="scene">
+   <div id="chartWorld" class="world"><svg viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg"><g id="grid1"></g><g id="candles"></g><path id="price"/><line id="cross1" x1="0" x2="1920" y1="500" y2="500"/><line id="cross2" x1="850" x2="850" y1="0" y2="1080"/><line id="trend" x1="450" y1="699" x2="1170" y2="453"/></svg></div>
+   <div id="signal"></div><div id="hook"><div class="kicker mono small">01 / IN MOTION</div><div id="market" class="hero">THE MARKET</div><div id="wait" class="hero">DOESN’T WAIT.</div></div>
+   <div id="surface"><header>TradingView <span>/ CHART</span><span>EXPLORE</span><span>IDEAS</span><span style="margin-left:auto">ILLUSTRATIVE EXPERIENCE</span></header><div id="toolrail">⌖<span>╱</span><span>⌗</span><span>○</span></div><aside>WATCHLIST<div><b>ALPHA</b> ↗</div><div><b>DELTA</b> ↘</div><div><b>THETA</b> ↗</div><div><b>OMEGA</b> ↗</div><div style="position:absolute;bottom:18px;font-size:14px">CONCEPT DATA</div></aside></div>
+   <div id="see">SEE THE MOMENT.</div><div id="cursor"><svg viewBox="0 0 48 48"><path d="M3 2 3 39 14 29 21 44 29 41 22 27 39 26Z" fill="#f8f7ee" stroke="#091d2c" stroke-width="3"/></svg></div><div id="wipe1"></div>
+  </section>
+  <section id="act2" class="scene"><div class="kicker mono small">02 / A DIFFERENT PERSPECTIVE</div><div id="viewTitle">CHANGE THE VIEW.</div><div id="timeframes"><span id="tf1">1D</span><span id="tf2">1W</span><span id="tf3">1M</span></div>
+   <div id="graph"><div class="grid"></div><svg viewBox="0 0 1736 589"><path id="graphFill"/><path id="graphPath"/><line id="crossG" x1="0" x2="1736" y1="300" y2="300" stroke="#c3faf0" stroke-dasharray="10 8" opacity=".5"/></svg><div id="scan"></div></div>
+   <div id="viewFoot" class="mono small">ONE SIGNAL. MORE CONTEXT.</div><div id="dataFoot" class="mono">HYPOTHETICAL DATA / NO LIVE PRICES</div>
+   <div id="panels"><div class="panel"><label>MACRO / 01</label><svg viewBox="0 0 480 620"><path id="panel1"/></svg></div><div class="panel"><label>MOMENT / 02</label><svg viewBox="0 0 480 620"><path id="panel2"/></svg></div><div class="panel"><label>PERSPECTIVE / 03</label><svg viewBox="0 0 480 620"><path id="panel3"/></svg></div></div>
+   <div id="merge"></div><div id="wipe2"></div>
+  </section>
+  <section id="act3" class="scene"><div class="kicker mono small">03 / STUDIOX VIEWPORT</div><div id="speed"></div><div id="seam"></div><div id="great" class="word">GREAT</div><div id="ideas" class="word">IDEAS</div><div id="should" class="word">SHOULD</div><div id="move" class="word">MOVE</div><div id="faster" class="word">FASTER.</div>
+   <div id="endcard"><div id="brand">Trading<em>View</em></div><div id="tag">Great ideas should move faster.</div><div id="creditline"></div><div id="studio" class="mono">CREATED BY STUDIOX VIEWPORT</div><div id="foot"><span>INDEPENDENT CONCEPT FILM · ILLUSTRATIVE MARKET DATA</span><span>MUSIC: “CATALYST” · SCOTT BUCKLEY · CC BY 4.0</span></div></div>
+  </section><div class="grain"></div><div class="rim"></div>
+ </div>
+ <audio id="studiox-score" class="clip" src="assets/score.wav" data-start="0" data-duration="30" data-track-index="10" data-volume="1" preload="auto"></audio>
+</div>
+<script>
+  window.__timelines = window.__timelines || {};
+  window.__timelines['studiox-v3'] = gsap.timeline({ paused: true });
+</script>
+<script src="motion.js"></script>
+</body></html>

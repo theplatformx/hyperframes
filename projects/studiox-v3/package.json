@@ -1,0 +1,19 @@
+{
+  "name": "studiox-viewport-tradingview-motion-study",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A coded 30-second TradingView concept film created by StudioX Viewport",
+  "scripts": {
+    "assets": "node scripts/prepare-assets.mjs",
+    "lint": "hyperframes lint",
+    "check": "hyperframes check --samples 28",
+    "render": "node scripts/render-film.mjs",
+    "render:looks": "hyperframes render --fps 30 --quality looks --output renders/StudioX-Viewport-Looks.mp4"
+  },
+  "dependencies": {
+    "gsap": "3.14.2",
+    "hyperframes": "0.8.145"
+  },
+  "engines": {"node": ">=22"}
+}
