@@ -32,5 +32,44 @@
     "Local cold setup and software GPU are not representative of warmed GPU render performance.",
     "4K source configuration exists but only the 1080p export is validated in this run.",
     "Hyperframes registry network refresh and subscription usage were unavailable."
-  ]
+  ],
+  "export": {
+    "programs": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "avg_frame_rate": "30/1",
+        "duration": "30.000000",
+        "nb_read_frames": "900"
+      },
+      {
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "48000",
+        "channels": 2,
+        "avg_frame_rate": "0/0",
+        "duration": "30.000000",
+        "nb_read_frames": "1407"
+      }
+    ],
+    "format": {
+      "duration": "30.000000",
+      "size": "2168280"
+    }
+  },
+  "render": {
+    "seconds": 114.7,
+    "captureSeconds": 104.7,
+    "compileSeconds": 1.3,
+    "audioSeconds": 4.3,
+    "setupSeconds": 1.6,
+    "assembleSeconds": 2.4,
+    "encode": "during capture",
+    "captureMode": "screenshot",
+    "gpuMode": "software",
+    "workers": 1
+  }
 }
