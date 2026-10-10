@@ -1,0 +1,92 @@
+{
+  "id": "studiox",
+  "title": "StudioX — Great ideas should move faster",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "duration": 30,
+  "palette": { "ink": "#101112", "paper": "#F3F0E8", "signal": "#DFFF00" },
+  "audio": { "source": "assets/soundtrack.wav", "start": 0, "duration": 30, "track": 10 },
+  "scenes": [
+    {
+      "id": "idea",
+      "start": 0,
+      "duration": 3,
+      "copy": ["An idea."],
+      "motif": "cursor",
+      "cues": { "bar": 0, "title": 0.25, "underline": 2.2 }
+    },
+    {
+      "id": "wait",
+      "start": 3,
+      "duration": 3,
+      "copy": ["Shouldn’t take", "forever."],
+      "motif": "underline",
+      "cues": { "title": 0.06, "word": 0.24, "stretch": 0.7 }
+    },
+    {
+      "id": "cut",
+      "start": 6,
+      "duration": 3,
+      "copy": ["Cut the wait."],
+      "motif": "slash",
+      "cues": { "flash": 0, "slash": 0.04, "title": 0.23 }
+    },
+    {
+      "id": "move",
+      "start": 9,
+      "duration": 4,
+      "copy": ["Make it", "move."],
+      "motif": "trajectory",
+      "cues": { "title": 0.06, "echo": 0.44, "word": 0.53, "line": 1.1 }
+    },
+    {
+      "id": "sharper",
+      "start": 13,
+      "duration": 1.7,
+      "copy": ["SHARPER"],
+      "motif": "slices",
+      "cues": { "title": 0, "slices": 0.08, "line": 0.4 }
+    },
+    {
+      "id": "bolder",
+      "start": 14.7,
+      "duration": 1.6,
+      "copy": ["BOLDER"],
+      "motif": "scale",
+      "cues": { "title": 0, "line": 0.3 }
+    },
+    {
+      "id": "faster",
+      "start": 16.3,
+      "duration": 1.7,
+      "copy": ["FASTER"],
+      "motif": "streaks",
+      "cues": { "title": 0, "streaks": 0.02 }
+    },
+    {
+      "id": "impact",
+      "start": 18,
+      "duration": 5,
+      "copy": ["From first spark", "to full impact."],
+      "motif": "convergence",
+      "cues": { "title": 0.08, "second": 0.6, "converge": 1.35, "resolve": 3.2 }
+    },
+    {
+      "id": "reveal",
+      "start": 23,
+      "duration": 3,
+      "copy": ["Studio"],
+      "motif": "crossing X",
+      "cues": { "word": 0.18, "strokeA": 0, "strokeB": 0.2, "lock": 0.8 }
+    },
+    {
+      "id": "finale",
+      "start": 26,
+      "duration": 4,
+      "copy": ["Studio", "Great ideas should move faster."],
+      "motif": "logo lockup",
+      "cues": { "tagline": 0.04, "rule": 0.15 }
+    }
+  ]
+}

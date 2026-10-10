@@ -1,0 +1,44 @@
+name: StudioX motion film
+
+on:
+  pull_request:
+    paths:
+      - "projects/studiox/**"
+      - ".github/workflows/studiox-video.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  HYPERFRAMES_NO_TELEMETRY: "1"
+  HYPERFRAMES_SKIP_SKILLS: "1"
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: projects/studiox
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: projects/studiox/package-lock.json
+      - run: npm ci
+      - run: npm run assets
+      - run: npm audit --omit=dev --audit-level=high
+      - run: npx --no-install hyperframes browser ensure
+      - run: npm run check
+      - name: Render the review film
+        if: github.event_name == 'workflow_dispatch'
+        run: npm run render
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: github.event_name == 'workflow_dispatch'
+        with:
+          name: StudioX-1080p
+          path: projects/studiox/renders/StudioX-1080p.mp4
+          if-no-files-found: error
