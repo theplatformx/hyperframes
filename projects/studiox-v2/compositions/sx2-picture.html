@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>sx2-picture</title>
+  </head>
+  <body>
+    <template id="sx2-picture-template"
+      ><style>
+        @font-face {
+          font-family: ViewportDisplay;
+          src: url("assets/Display.ttf") format("truetype");
+          font-weight: 700;
+          font-display: block;
+        }
+        @font-face {
+          font-family: ViewportMono;
+          src: url("assets/Mono.ttf") format("truetype");
+          font-weight: 400;
+          font-display: block;
+        }
+        @font-face {
+          font-family: ViewportSerif;
+          src: url("assets/Serif.ttf") format("truetype");
+          font-weight: 400;
+          font-display: block;
+        }
+        * {
+          box-sizing: border-box;
+        }
+        .stage {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #f2eee5;
+          font-family: ViewportDisplay, sans-serif;
+          font-weight: 700;
+          perspective: 1800px;
+        }
+        .serif {
+          font-family: ViewportSerif, serif;
+          font-weight: 400;
+          letter-spacing: -0.055em;
+          line-height: 0.94;
+        }
+        .display {
+          font-family: ViewportDisplay, sans-serif;
+          font-weight: 700;
+          letter-spacing: -0.065em;
+          line-height: 0.96;
+        }
+        .mono {
+          font-family: ViewportMono, monospace;
+          font-size: 22px;
+          font-weight: 400;
+          letter-spacing: 0.06em;
+        }
+        .eyebrow {
+          font-family: ViewportMono, monospace;
+          font-size: 23px;
+          font-weight: 400;
+          letter-spacing: 0.1em;
+        }
+        .mask {
+          overflow: hidden;
+          padding: 10px 0 20px;
+        }
+        .word {
+          display: inline-block;
+        }
+        .chapter {
+          position: absolute;
+          left: 100px;
+          top: 74px;
+        }
+        .scene-no {
+          position: absolute;
+          right: 96px;
+          top: 74px;
+          opacity: 1;
+        }
+        .hairline {
+          position: absolute;
+          left: 100px;
+          right: 100px;
+          top: 119px;
+          height: 1px;
+          background: rgba(242, 238, 229, 0.2);
+        }
+        .panel {
+          position: absolute;
+          background: #0d2035;
+          border: 1px solid #36506a;
+          box-shadow: 0 42px 100px rgba(0, 0, 0, 0.34);
+          border-radius: 12px;
+          overflow: hidden;
+        }
+        .panel-head {
+          height: 70px;
+          border-bottom: 1px solid #36506a;
+          padding: 23px 28px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-family: ViewportMono, monospace;
+          font-size: 17px;
+          font-weight: 400;
+          letter-spacing: 0.08em;
+        }
+        .panel svg {
+          display: block;
+          width: 100%;
+          height: calc(100% - 70px);
+        }
+        .credit {
+          position: absolute;
+          bottom: 38px;
+          left: 100px;
+          right: 100px;
+          font-family: ViewportMono, monospace;
+          font-weight: 400;
+          font-size: 19px;
+          letter-spacing: -0.02em;
+        }
+        .chart-note {
+          font-family: ViewportMono, monospace;
+          font-size: 17px;
+          font-weight: 400;
+          letter-spacing: 0.04em;
+        }
+        .illustrative {
+          position: absolute;
+          bottom: 25px;
+          left: 28px;
+          z-index: 3;
+          color: #c5d3e4;
+        }
+        .gridline {
+          stroke: #abc6e7;
+          stroke-opacity: 0.13;
+          stroke-width: 1;
+        }
+        .cross {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+        }
+        .cross-v {
+          position: absolute;
+          left: 50%;
+          top: 0;
+          bottom: 0;
+          border-left: 1px dashed #6d97d4;
+        }
+        .cross-h {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          right: 0;
+          border-top: 1px dashed #6d97d4;
+        }
+        .cross-dot {
+          position: absolute;
+          left: calc(50% - 9px);
+          top: calc(50% - 9px);
+          width: 18px;
+          height: 18px;
+          background: #f2eee5;
+          border: 5px solid #165dff;
+          border-radius: 50%;
+        }
+        .spline {
+          fill: none;
+          stroke: #165dff;
+          stroke-width: 5;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        #sx2-picture-root {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          background: #071424;
+        }
+        #sx2-picture-root {
+          background: #165dff;
+        }
+        #sx2-picture-root .mono,
+        #sx2-picture-root .eyebrow {
+          color: #ffffff;
+        }
+        #sx2-picture-title {
+          position: absolute;
+          left: 102px;
+          top: 156px;
+          font-size: 118px;
+          z-index: 4;
+          width: 1700px;
+        }
+        #sx2-picture-title .serif {
+          margin-left: 25px;
+          font-size: 142px;
+        }
+        #sx2-picture-screen {
+          position: absolute;
+          left: 295px;
+          top: 350px;
+          width: 1430px;
+          height: 650px;
+          border: 10px solid #f2eee5;
+          border-radius: 12px;
+          box-shadow: 0 70px 100px #05183688;
+          overflow: hidden;
+        }
+        #sx2-picture-screen img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+        #sx2-picture-caption {
+          position: absolute;
+          left: 100px;
+          bottom: 50px;
+          z-index: 5;
+          font-size: 18px;
+        }
+        #sx2-picture-shadow {
+          position: absolute;
+          left: 210px;
+          top: 395px;
+          width: 1410px;
+          height: 560px;
+          background: #082c77;
+          border-radius: 10px;
+        }
+      </style>
+      <div
+        id="sx2-picture-root"
+        data-composition-id="sx2-picture"
+        data-width="1920"
+        data-height="1080"
+        data-duration="4"
+      >
+        <div class="stage">
+          <div class="chapter eyebrow">01 / WIDEN THE FRAME</div>
+          <div class="scene-no mono">02 — 07</div>
+          <div class="hairline"></div>
+          <div id="sx2-picture-title">
+            <div class="mask">
+              <span class="display word">See the</span
+              ><span class="serif word">whole picture.</span>
+            </div>
+          </div>
+          <div id="sx2-picture-shadow"></div>
+          <div id="sx2-picture-screen">
+            <img
+              src="assets/tradingview-chart.png"
+              alt="TradingView chart interface from its public homepage"
+            />
+          </div>
+          <div id="sx2-picture-caption" class="mono">TRADINGVIEW / PRODUCT VIEW</div>
+        </div>
+      </div>
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          const E = (s, a, b, t) => tl.fromTo(s, a, { ...b, immediateRender: true }, t);
+          E(
+            "#sx2-picture-title .word",
+            { y: 185 },
+            { y: 0, duration: 0.75, stagger: 0.13, ease: "power4.out" },
+            0.08,
+          );
+          E(
+            "#sx2-picture-screen",
+            {
+              x: 200,
+              y: 140,
+              rotationX: 28,
+              rotationY: -16,
+              rotation: -6,
+              scale: 0.85,
+              opacity: 0,
+            },
+            {
+              x: 0,
+              y: 0,
+              rotationX: 0,
+              rotationY: 0,
+              rotation: 0,
+              scale: 1,
+              opacity: 1,
+              duration: 1.2,
+              ease: "power3.out",
+            },
+            0.2,
+          );
+          E(
+            "#sx2-picture-shadow",
+            { x: 210, opacity: 0 },
+            { x: 0, opacity: 0.7, duration: 1.2, ease: "power3.out" },
+            0.2,
+          );
+          tl.to(
+            "#sx2-picture-screen",
+            { scale: 1.06, y: -30, duration: 1.6, ease: "sine.inOut" },
+            2.35,
+          );
+          window.__timelines = window.__timelines || {};
+          window.__timelines["sx2-picture"] = tl;
+        })();
+      </script></template
+    >
+  </body>
+</html>

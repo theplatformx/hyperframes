@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>sx2-product</title>
+  </head>
+  <body>
+    <template id="sx2-product-template"
+      ><style>
+        @font-face {
+          font-family: ViewportDisplay;
+          src: url("assets/Display.ttf") format("truetype");
+          font-weight: 700;
+          font-display: block;
+        }
+        @font-face {
+          font-family: ViewportMono;
+          src: url("assets/Mono.ttf") format("truetype");
+          font-weight: 400;
+          font-display: block;
+        }
+        @font-face {
+          font-family: ViewportSerif;
+          src: url("assets/Serif.ttf") format("truetype");
+          font-weight: 400;
+          font-display: block;
+        }
+        * {
+          box-sizing: border-box;
+        }
+        .stage {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #f2eee5;
+          font-family: ViewportDisplay, sans-serif;
+          font-weight: 700;
+          perspective: 1800px;
+        }
+        .serif {
+          font-family: ViewportSerif, serif;
+          font-weight: 400;
+          letter-spacing: -0.055em;
+          line-height: 0.94;
+        }
+        .display {
+          font-family: ViewportDisplay, sans-serif;
+          font-weight: 700;
+          letter-spacing: -0.065em;
+          line-height: 0.96;
+        }
+        .mono {
+          font-family: ViewportMono, monospace;
+          font-size: 22px;
+          font-weight: 400;
+          letter-spacing: 0.06em;
+        }
+        .eyebrow {
+          font-family: ViewportMono, monospace;
+          font-size: 23px;
+          font-weight: 400;
+          letter-spacing: 0.1em;
+        }
+        .mask {
+          overflow: hidden;
+          padding: 10px 0 20px;
+        }
+        .word {
+          display: inline-block;
+        }
+        .chapter {
+          position: absolute;
+          left: 100px;
+          top: 74px;
+        }
+        .scene-no {
+          position: absolute;
+          right: 96px;
+          top: 74px;
+          opacity: 1;
+        }
+        .hairline {
+          position: absolute;
+          left: 100px;
+          right: 100px;
+          top: 119px;
+          height: 1px;
+          background: rgba(242, 238, 229, 0.2);
+        }
+        .panel {
+          position: absolute;
+          background: #0d2035;
+          border: 1px solid #36506a;
+          box-shadow: 0 42px 100px rgba(0, 0, 0, 0.34);
+          border-radius: 12px;
+          overflow: hidden;
+        }
+        .panel-head {
+          height: 70px;
+          border-bottom: 1px solid #36506a;
+          padding: 23px 28px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-family: ViewportMono, monospace;
+          font-size: 17px;
+          font-weight: 400;
+          letter-spacing: 0.08em;
+        }
+        .panel svg {
+          display: block;
+          width: 100%;
+          height: calc(100% - 70px);
+        }
+        .credit {
+          position: absolute;
+          bottom: 38px;
+          left: 100px;
+          right: 100px;
+          font-family: ViewportMono, monospace;
+          font-weight: 400;
+          font-size: 19px;
+          letter-spacing: -0.02em;
+        }
+        .chart-note {
+          font-family: ViewportMono, monospace;
+          font-size: 17px;
+          font-weight: 400;
+          letter-spacing: 0.04em;
+        }
+        .illustrative {
+          position: absolute;
+          bottom: 25px;
+          left: 28px;
+          z-index: 3;
+          color: #c5d3e4;
+        }
+        .gridline {
+          stroke: #abc6e7;
+          stroke-opacity: 0.13;
+          stroke-width: 1;
+        }
+        .cross {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+        }
+        .cross-v {
+          position: absolute;
+          left: 50%;
+          top: 0;
+          bottom: 0;
+          border-left: 1px dashed #6d97d4;
+        }
+        .cross-h {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          right: 0;
+          border-top: 1px dashed #6d97d4;
+        }
+        .cross-dot {
+          position: absolute;
+          left: calc(50% - 9px);
+          top: calc(50% - 9px);
+          width: 18px;
+          height: 18px;
+          background: #f2eee5;
+          border: 5px solid #165dff;
+          border-radius: 50%;
+        }
+        .spline {
+          fill: none;
+          stroke: #165dff;
+          stroke-width: 5;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        #sx2-product-root {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          background: #071424;
+        }
+        #sx2-product-root {
+          background: #165dff;
+        }
+        #sx2-product-root .mono,
+        #sx2-product-root .eyebrow {
+          color: #ffffff;
+        }
+        #sx2-product-word {
+          position: absolute;
+          left: 110px;
+          top: 200px;
+          font-size: 222px;
+          z-index: 4;
+        }
+        #sx2-product-rule {
+          position: absolute;
+          left: 115px;
+          top: 470px;
+          width: 1650px;
+          height: 2px;
+          background: #a9c5ff;
+          transform-origin: left;
+        }
+        #sx2-product-screen {
+          position: absolute;
+          left: 710px;
+          top: 595px;
+          width: 1230px;
+          height: 530px;
+          overflow: hidden;
+          border: 8px solid #f2eee5;
+          border-radius: 10px;
+          box-shadow: 0 45px 100px #07142466;
+        }
+        #sx2-product-screen img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        #sx2-product-detail {
+          position: absolute;
+          left: 115px;
+          top: 606px;
+          font-size: 42px;
+          width: 570px;
+          line-height: 1.45;
+          font-family: ViewportSerif, serif;
+          font-weight: 400;
+        }
+        #sx2-product-small {
+          position: absolute;
+          left: 115px;
+          bottom: 95px;
+          letter-spacing: 0.07em;
+          font-size: 20px;
+        }
+      </style>
+      <div
+        id="sx2-product-root"
+        data-composition-id="sx2-product"
+        data-width="1920"
+        data-height="1080"
+        data-duration="4"
+      >
+        <div class="stage">
+          <div class="chapter eyebrow">TRADINGVIEW / IN PERSPECTIVE</div>
+          <div class="scene-no mono">06 — 07</div>
+          <div class="hairline"></div>
+          <div class="mask" id="sx2-product-word"><div class="display word">TradingView</div></div>
+          <div id="sx2-product-rule"></div>
+          <div id="sx2-product-detail">
+            <div>See the whole picture.</div>
+            <div>Find your perspective.</div>
+          </div>
+          <div id="sx2-product-screen">
+            <img src="assets/tradingview-chart.png" alt="TradingView chart interface" />
+          </div>
+          <div id="sx2-product-small" class="mono">AN INDEPENDENT CONCEPT FILM</div>
+        </div>
+      </div>
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          const E = (s, a, b, t) => tl.fromTo(s, a, { ...b, immediateRender: true }, t);
+          E(
+            "#sx2-product-word .word",
+            { y: 260 },
+            { y: 0, duration: 0.9, ease: "power4.out" },
+            0.05,
+          );
+          E(
+            "#sx2-product-rule",
+            { scaleX: 0 },
+            { scaleX: 1, duration: 1.2, ease: "power3.inOut" },
+            0.3,
+          );
+          E(
+            "#sx2-product-screen",
+            { x: 250, y: 190, rotation: -8, rotationY: -15, opacity: 0 },
+            {
+              x: 0,
+              y: 0,
+              rotation: -3,
+              rotationY: -5,
+              opacity: 1,
+              duration: 1.3,
+              ease: "power3.out",
+            },
+            0.1,
+          );
+          E(
+            "#sx2-product-detail",
+            { y: 25, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.7, ease: "power2.out" },
+            0.65,
+          );
+          tl.to(
+            "#sx2-product-screen",
+            { y: -25, rotation: -2, duration: 1.7, ease: "sine.inOut" },
+            2.1,
+          );
+          window.__timelines = window.__timelines || {};
+          window.__timelines["sx2-product"] = tl;
+        })();
+      </script></template
+    >
+  </body>
+</html>

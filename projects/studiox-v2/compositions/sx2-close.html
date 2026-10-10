@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>sx2-close</title>
+  </head>
+  <body>
+    <template id="sx2-close-template"
+      ><style>
+        @font-face {
+          font-family: ViewportDisplay;
+          src: url("assets/Display.ttf") format("truetype");
+          font-weight: 700;
+          font-display: block;
+        }
+        @font-face {
+          font-family: ViewportMono;
+          src: url("assets/Mono.ttf") format("truetype");
+          font-weight: 400;
+          font-display: block;
+        }
+        @font-face {
+          font-family: ViewportSerif;
+          src: url("assets/Serif.ttf") format("truetype");
+          font-weight: 400;
+          font-display: block;
+        }
+        * {
+          box-sizing: border-box;
+        }
+        .stage {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #f2eee5;
+          font-family: ViewportDisplay, sans-serif;
+          font-weight: 700;
+          perspective: 1800px;
+        }
+        .serif {
+          font-family: ViewportSerif, serif;
+          font-weight: 400;
+          letter-spacing: -0.055em;
+          line-height: 0.94;
+        }
+        .display {
+          font-family: ViewportDisplay, sans-serif;
+          font-weight: 700;
+          letter-spacing: -0.065em;
+          line-height: 0.96;
+        }
+        .mono {
+          font-family: ViewportMono, monospace;
+          font-size: 22px;
+          font-weight: 400;
+          letter-spacing: 0.06em;
+        }
+        .eyebrow {
+          font-family: ViewportMono, monospace;
+          font-size: 23px;
+          font-weight: 400;
+          letter-spacing: 0.1em;
+        }
+        .mask {
+          overflow: hidden;
+          padding: 10px 0 20px;
+        }
+        .word {
+          display: inline-block;
+        }
+        .chapter {
+          position: absolute;
+          left: 100px;
+          top: 74px;
+        }
+        .scene-no {
+          position: absolute;
+          right: 96px;
+          top: 74px;
+          opacity: 1;
+        }
+        .hairline {
+          position: absolute;
+          left: 100px;
+          right: 100px;
+          top: 119px;
+          height: 1px;
+          background: rgba(242, 238, 229, 0.2);
+        }
+        .panel {
+          position: absolute;
+          background: #0d2035;
+          border: 1px solid #36506a;
+          box-shadow: 0 42px 100px rgba(0, 0, 0, 0.34);
+          border-radius: 12px;
+          overflow: hidden;
+        }
+        .panel-head {
+          height: 70px;
+          border-bottom: 1px solid #36506a;
+          padding: 23px 28px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-family: ViewportMono, monospace;
+          font-size: 17px;
+          font-weight: 400;
+          letter-spacing: 0.08em;
+        }
+        .panel svg {
+          display: block;
+          width: 100%;
+          height: calc(100% - 70px);
+        }
+        .credit {
+          position: absolute;
+          bottom: 38px;
+          left: 100px;
+          right: 100px;
+          font-family: ViewportMono, monospace;
+          font-weight: 400;
+          font-size: 19px;
+          letter-spacing: -0.02em;
+        }
+        .chart-note {
+          font-family: ViewportMono, monospace;
+          font-size: 17px;
+          font-weight: 400;
+          letter-spacing: 0.04em;
+        }
+        .illustrative {
+          position: absolute;
+          bottom: 25px;
+          left: 28px;
+          z-index: 3;
+          color: #c5d3e4;
+        }
+        .gridline {
+          stroke: #abc6e7;
+          stroke-opacity: 0.13;
+          stroke-width: 1;
+        }
+        .cross {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+        }
+        .cross-v {
+          position: absolute;
+          left: 50%;
+          top: 0;
+          bottom: 0;
+          border-left: 1px dashed #6d97d4;
+        }
+        .cross-h {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          right: 0;
+          border-top: 1px dashed #6d97d4;
+        }
+        .cross-dot {
+          position: absolute;
+          left: calc(50% - 9px);
+          top: calc(50% - 9px);
+          width: 18px;
+          height: 18px;
+          background: #f2eee5;
+          border: 5px solid #165dff;
+          border-radius: 50%;
+        }
+        .spline {
+          fill: none;
+          stroke: #165dff;
+          stroke-width: 5;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        #sx2-close-root {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          background: #071424;
+        }
+        #sx2-close-root {
+          background: #071424;
+        }
+        #sx2-close-studio {
+          position: absolute;
+          left: 104px;
+          top: 92px;
+          font-size: 26px;
+          color: #b9cffe;
+        }
+        #sx2-close-title {
+          position: absolute;
+          left: 100px;
+          top: 255px;
+          width: 1730px;
+          font-size: 178px;
+        }
+        #sx2-close-title .serif {
+          font-size: 208px;
+          color: #b9cffe;
+        }
+        #sx2-close-bar {
+          position: absolute;
+          left: 110px;
+          top: 784px;
+          width: 130px;
+          height: 12px;
+          background: #165dff;
+          transform-origin: left;
+        }
+        #sx2-close-product {
+          position: absolute;
+          right: 104px;
+          top: 862px;
+          font-size: 36px;
+        }
+        #sx2-close-note {
+          position: absolute;
+          left: 104px;
+          top: 864px;
+          font-size: 20px;
+          color: #b6c3d5;
+        }
+        #sx2-close-credit {
+          color: #b6c3d5;
+        }
+      </style>
+      <div
+        id="sx2-close-root"
+        data-composition-id="sx2-close"
+        data-width="1920"
+        data-height="1080"
+        data-duration="5"
+      >
+        <div class="stage">
+          <div id="sx2-close-studio" class="mono">
+            CREATED BY <span style="color: #f2eee5">STUDIOX VIEWPORT</span>
+          </div>
+          <div id="sx2-close-title">
+            <div class="mask"><div class="display word">Great ideas should</div></div>
+            <div class="mask"><div class="serif word">move faster.</div></div>
+          </div>
+          <div id="sx2-close-bar"></div>
+          <div id="sx2-close-product" class="display">TradingView</div>
+          <div id="sx2-close-note" class="mono">Independent concept film · Illustrative charts</div>
+          <div id="sx2-close-credit" class="credit">
+            Catalyst — Scott Buckley · CC BY 4.0 · scottbuckley.com.au
+          </div>
+        </div>
+      </div>
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          const E = (s, a, b, t) => tl.fromTo(s, a, { ...b, immediateRender: true }, t);
+          E(
+            "#sx2-close-title .word",
+            { y: 230 },
+            { y: 0, duration: 0.85, stagger: 0.12, ease: "power4.out" },
+            0.1,
+          );
+          E(
+            "#sx2-close-studio",
+            { opacity: 0, y: 10 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
+            0,
+          );
+          E(
+            "#sx2-close-bar",
+            { scaleX: 0 },
+            { scaleX: 1, duration: 0.7, ease: "power3.inOut" },
+            0.5,
+          );
+          window.__timelines = window.__timelines || {};
+          window.__timelines["sx2-close"] = tl;
+        })();
+      </script></template
+    >
+  </body>
+</html>

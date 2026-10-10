@@ -1,0 +1,136 @@
+{
+  "status": "passed",
+  "browserSkipped": false,
+  "gate": {
+    "lint": {
+      "ok": true,
+      "errorCount": 0,
+      "warningCount": 3
+    },
+    "runtime": {
+      "ok": true,
+      "errorCount": 0,
+      "warningCount": 0
+    },
+    "layout": {
+      "ok": true,
+      "errorCount": 0,
+      "warningCount": 0
+    },
+    "motion": {
+      "ok": true,
+      "errorCount": 0,
+      "warningCount": 0
+    },
+    "contrast": {
+      "ok": true,
+      "errorCount": 0,
+      "warningCount": 0
+    }
+  },
+  "layoutSampleTimes": [
+    0.714,
+    2.143,
+    3.571,
+    5,
+    6.429,
+    7.857,
+    9.286,
+    10.714,
+    12.143,
+    13.571,
+    15,
+    16.429,
+    17.857,
+    19.286,
+    20.714,
+    22.143,
+    23.571,
+    25,
+    26.429,
+    27.857,
+    29.286
+  ],
+  "motionSamples": 300,
+  "contrastSampleTimes": [
+    0.714,
+    7.857,
+    15,
+    22.143,
+    29.286
+  ],
+  "remainingWarnings": "Three large formatted composition source files. No runtime, layout, motion or sampled contrast failures.",
+  "export": {
+    "programs": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1",
+        "duration": "30.000000",
+        "nb_frames": "900"
+      },
+      {
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "48000",
+        "channels": 2,
+        "r_frame_rate": "0/0",
+        "duration": "30.000000",
+        "nb_frames": "1408"
+      }
+    ],
+    "format": {
+      "duration": "30.000000",
+      "size": "15984932"
+    }
+  },
+  "exportAudio": {
+    "integratedLUFS": -14.28,
+    "truePeakDbTP": -1.49,
+    "loudnessRangeLU": 7.5
+  },
+  "render": {
+    "pipelineSeconds": 114.315,
+    "workers": 2,
+    "captureMode": "beginframe",
+    "gpu": "software",
+    "stageSeconds": {
+      "compile": 2.387,
+      "browser_probe": 0.612,
+      "video_extract": 0.004,
+      "audio_process": 2.143,
+      "file_server": 0.024,
+      "capture_streaming": 105.71,
+      "assemble": 2.379
+    },
+    "command": "hyperframes render --fps 30 --quality delivery --workers 2 --no-low-memory-mode --output renders/StudioX-Viewport-TradingView.mp4"
+  },
+  "checks": [
+    "Python and JavaScript syntax",
+    "oxfmt and oxlint",
+    "npm audit: zero vulnerabilities",
+    "pinned asset downloads and deterministic soundtrack generation",
+    "opening frames and final frame inspected",
+    "ffprobe: 900 frames, 30 seconds, H264, 1920x1080, 30 fps, stereo AAC at 48 kHz"
+  ],
+  "revisionNote": "An initial export was interrupted to correct entrance poses before the first frame. Its time is part of total production, not the successful render benchmark.",
+  "artifactSha256": "ca48deaa4e79900cf61a9102970f8279ea88e825ee2a092e70660603e852206e",
+  "productionTiming": {
+    "trackedThroughExportValidationSeconds": 1488.933,
+    "includes": [
+      "research",
+      "scripting",
+      "coding",
+      "asset preparation",
+      "reviews",
+      "checks",
+      "interrupted export",
+      "successful export",
+      "file saving"
+    ],
+    "excludes": "Final GitHub documentation update and response"
+  }
+}

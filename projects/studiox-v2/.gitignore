@@ -1,0 +1,11 @@
+node_modules/
+renders/
+snapshots/
+.hyperframes/
+assets/gsap.min.js
+assets/soundtrack.wav
+assets/mix-premaster.wav
+assets/catalyst-source.mp3
+assets/tradingview-chart-source.svg
+assets/tradingview-chart.png
+*.log

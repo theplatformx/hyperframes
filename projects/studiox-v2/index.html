@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>TradingView — Created by StudioX Viewport</title>
+    <style>
+      @font-face {
+        font-family: ViewportDisplay;
+        src: url("assets/Display.ttf") format("truetype");
+        font-weight: 700;
+        font-display: block;
+      }
+      @font-face {
+        font-family: ViewportMono;
+        src: url("assets/Mono.ttf") format("truetype");
+        font-weight: 400;
+        font-display: block;
+      }
+      @font-face {
+        font-family: ViewportSerif;
+        src: url("assets/Serif.ttf") format("truetype");
+        font-weight: 400;
+        font-display: block;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #071424;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        perspective: 1800px;
+      }
+      #root > .clip {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+    </style>
+    <script src="assets/gsap.min.js"></script>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="studiox-v2"
+      data-start="0"
+      data-duration="30"
+      data-width="1920"
+      data-height="1080"
+      data-fps="30"
+    >
+      <div
+        id="sx2-markets-slot"
+        class="clip"
+        data-composition-id="sx2-markets"
+        data-composition-src="compositions/sx2-markets.html"
+        data-start="0"
+        data-duration="4"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="sx2-picture-slot"
+        class="clip"
+        data-composition-id="sx2-picture"
+        data-composition-src="compositions/sx2-picture.html"
+        data-start="4"
+        data-duration="4"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="sx2-perspective-slot"
+        class="clip"
+        data-composition-id="sx2-perspective"
+        data-composition-src="compositions/sx2-perspective.html"
+        data-start="8"
+        data-duration="4.5"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="sx2-moment-slot"
+        class="clip"
+        data-composition-id="sx2-moment"
+        data-composition-src="compositions/sx2-moment.html"
+        data-start="12.5"
+        data-duration="4.5"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="sx2-montage-slot"
+        class="clip"
+        data-composition-id="sx2-montage"
+        data-composition-src="compositions/sx2-montage.html"
+        data-start="17"
+        data-duration="4"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="sx2-product-slot"
+        class="clip"
+        data-composition-id="sx2-product"
+        data-composition-src="compositions/sx2-product.html"
+        data-start="21"
+        data-duration="4"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <div
+        id="sx2-close-slot"
+        class="clip"
+        data-composition-id="sx2-close"
+        data-composition-src="compositions/sx2-close.html"
+        data-start="25"
+        data-duration="5"
+        data-track-index="1"
+        data-width="1920"
+        data-height="1080"
+      ></div>
+      <audio
+        id="sx2-soundtrack"
+        class="clip"
+        src="assets/soundtrack.wav"
+        data-start="0"
+        data-duration="30"
+        data-track-index="10"
+        data-volume="1"
+        preload="auto"
+      ></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["studiox-v2"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

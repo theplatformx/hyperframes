@@ -1,0 +1,9 @@
+{
+  "duration": 30,
+  "assertions": [
+    { "kind": "appearsBy", "selector": "#sx2-markets-type", "bySec": 1.2 },
+    { "kind": "appearsBy", "selector": "#sx2-moment-title", "bySec": 13.5 },
+    { "kind": "appearsBy", "selector": "#sx2-close-title", "bySec": 26.2 },
+    { "kind": "staysInFrame", "selector": "#sx2-close-title" }
+  ]
+}
