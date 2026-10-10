@@ -33,3 +33,5 @@ The audio mix targets −14 LUFS integrated and −1.5 dBTP. The measured local 
 ## Validation and timing
 
 See validation.json for the final browser gate and export checks. Render time is measured separately from research, scripting, coding, revisions, asset preparation and delivery.
+
+Final export: 30.000 seconds, 900 H.264 frames at 1920 × 1080 / 30 fps, stereo AAC at 48 kHz, 15,984,932 bytes. Export audio measured −14.28 LUFS integrated and −1.49 dBTP. The successful two-worker beginframe render took 114.315 seconds. Use `npm run render:benchmark` for that capture profile; regular `npm run render` retains the engine’s automatic memory safeguards.

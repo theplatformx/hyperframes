@@ -9,7 +9,8 @@
     "lint": "hyperframes lint",
     "check": "hyperframes check --samples 21",
     "preview": "hyperframes preview",
-    "render": "hyperframes render --fps 30 --quality delivery --output renders/StudioX-Viewport-TradingView.mp4"
+    "render": "hyperframes render --fps 30 --quality delivery --output renders/StudioX-Viewport-TradingView.mp4",
+    "render:benchmark": "hyperframes render --fps 30 --quality delivery --output renders/StudioX-Viewport-TradingView.mp4 --workers 2 --no-low-memory-mode"
   },
   "dependencies": {
     "gsap": "3.14.2",
