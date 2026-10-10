@@ -69,7 +69,7 @@
     .set('#panels',{opacity:0},0).set('#merge',{scaleX:0,opacity:0},0)
     .set('#wipe2',{scale:0,opacity:0},0)
     .set('#great, #ideas, #should, #move, #faster',{opacity:0},0)
-    .set('#endcard',{clipPath:'inset(100% 0 0 0)'},0)
+    .set('#endcard',{clipPath:'inset(0 0 100% 0)'},0)
     .set('#brand,#tag,#studio,#foot',{opacity:0},0);
 
   // 0–10: the signal draws a chart, becomes a cursor, and marks a cause on that chart.
@@ -127,7 +127,7 @@
     .to('#wipe2',{opacity:1,scale:32,duration:.52,ease:'power3.in'},19.48);
 
   // 20–30: typography physically collides with the travelling line, then gives the brand a hold.
-  tl.set('#act3',{opacity:1},20).set('#act2',{opacity:0},20.12)
+  tl.set('#act3',{opacity:1},20).set('#act2',{opacity:0},20)
     .to('#wipe2',{opacity:0,duration:.12},20.10)
     .fromTo('#great',{opacity:0,x:-560},{opacity:1,x:0,duration:.56,ease:'power4.out'},20.18)
     .fromTo('#ideas',{opacity:0,x:680},{opacity:1,x:0,duration:.62,ease:'power4.out'},21.08)
@@ -139,13 +139,12 @@
     .to('#should,#move',{opacity:0,x:-410,duration:.42,ease:'power3.in'},24.65)
     .fromTo('#faster',{opacity:0,scale:1.52,x:510,filter:'blur(12px)'},{opacity:1,scale:1,x:0,filter:'blur(0px)',duration:.64,ease:'power4.out'},25.04)
     .to('#seam',{scaleX:1,x:0,duration:.50},25.23)
-    .to('#faster',{opacity:0,scale:.96,duration:.37,ease:'power2.in'},26.60)
-    .to('#act3 .kicker',{opacity:0,duration:.20},26.77)
-    .to('#endcard',{clipPath:'inset(0% 0 0 0)',duration:.53,ease:'power3.inOut'},26.93)
-    .fromTo('#brand',{opacity:0,y:120},{opacity:1,y:0,duration:.55},27.40)
-    .fromTo('#tag',{opacity:0,y:35},{opacity:1,y:0,duration:.52},27.84)
-    .to('#creditline',{width:1640,duration:.68,ease:'power2.inOut'},28.05)
-    .fromTo('#studio,#foot',{opacity:0,y:25},{opacity:1,y:0,duration:.40,stagger:.14},28.40);
+    .to('#endcard',{clipPath:'inset(0% 0 0 0)',duration:.50,ease:'power3.inOut'},26.85)
+    .set('#act3 .kicker,#faster',{display:'none'},27.37)
+    .fromTo('#brand',{opacity:0,y:120},{opacity:1,y:0,duration:.52},27.06)
+    .fromTo('#tag',{opacity:0,y:35},{opacity:1,y:0,duration:.48},27.53)
+    .to('#creditline',{width:1640,duration:.68,ease:'power2.inOut'},27.92)
+    .fromTo('#studio,#foot',{opacity:0,y:25},{opacity:1,y:0,duration:.40,stagger:.14},28.28);
 
   window.__timelines=window.__timelines||{};
   window.__timelines['studiox-v3']=tl;
