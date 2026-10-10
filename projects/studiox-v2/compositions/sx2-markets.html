@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>sx2-markets</title>
+  </head>
+  <body>
+    <template id="sx2-markets-template"
+      ><style>
+        @font-face {
+          font-family: ViewportDisplay;
+          src: url("assets/Display.ttf") format("truetype");
+          font-weight: 700;
+          font-display: block;
+        }
+        @font-face {
+          font-family: ViewportMono;
+          src: url("assets/Mono.ttf") format("truetype");
+          font-weight: 400;
+          font-display: block;
+        }
+        @font-face {
+          font-family: ViewportSerif;
+          src: url("assets/Serif.ttf") format("truetype");
+          font-weight: 400;
+          font-display: block;
+        }
+        * {
+          box-sizing: border-box;
+        }
+        .stage {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #f2eee5;
+          font-family: ViewportDisplay, sans-serif;
+          font-weight: 700;
+          perspective: 1800px;
+        }
+        .serif {
+          font-family: ViewportSerif, serif;
+          font-weight: 400;
+          letter-spacing: -0.055em;
+          line-height: 0.94;
+        }
+        .display {
+          font-family: ViewportDisplay, sans-serif;
+          font-weight: 700;
+          letter-spacing: -0.065em;
+          line-height: 0.96;
+        }
+        .mono {
+          font-family: ViewportMono, monospace;
+          font-size: 22px;
+          font-weight: 400;
+          letter-spacing: 0.06em;
+        }
+        .eyebrow {
+          font-family: ViewportMono, monospace;
+          font-size: 23px;
+          font-weight: 400;
+          letter-spacing: 0.1em;
+        }
+        .mask {
+          overflow: hidden;
+          padding: 10px 0 20px;
+        }
+        .word {
+          display: inline-block;
+        }
+        .chapter {
+          position: absolute;
+          left: 100px;
+          top: 74px;
+        }
+        .scene-no {
+          position: absolute;
+          right: 96px;
+          top: 74px;
+          opacity: 1;
+        }
+        .hairline {
+          position: absolute;
+          left: 100px;
+          right: 100px;
+          top: 119px;
+          height: 1px;
+          background: rgba(242, 238, 229, 0.2);
+        }
+        .panel {
+          position: absolute;
+          background: #0d2035;
+          border: 1px solid #36506a;
+          box-shadow: 0 42px 100px rgba(0, 0, 0, 0.34);
+          border-radius: 12px;
+          overflow: hidden;
+        }
+        .panel-head {
+          height: 70px;
+          border-bottom: 1px solid #36506a;
+          padding: 23px 28px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-family: ViewportMono, monospace;
+          font-size: 17px;
+          font-weight: 400;
+          letter-spacing: 0.08em;
+        }
+        .panel svg {
+          display: block;
+          width: 100%;
+          height: calc(100% - 70px);
+        }
+        .credit {
+          position: absolute;
+          bottom: 38px;
+          left: 100px;
+          right: 100px;
+          font-family: ViewportMono, monospace;
+          font-weight: 400;
+          font-size: 19px;
+          letter-spacing: -0.02em;
+        }
+        .chart-note {
+          font-family: ViewportMono, monospace;
+          font-size: 17px;
+          font-weight: 400;
+          letter-spacing: 0.04em;
+        }
+        .illustrative {
+          position: absolute;
+          bottom: 25px;
+          left: 28px;
+          z-index: 3;
+          color: #c5d3e4;
+        }
+        .gridline {
+          stroke: #abc6e7;
+          stroke-opacity: 0.13;
+          stroke-width: 1;
+        }
+        .cross {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+        }
+        .cross-v {
+          position: absolute;
+          left: 50%;
+          top: 0;
+          bottom: 0;
+          border-left: 1px dashed #6d97d4;
+        }
+        .cross-h {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          right: 0;
+          border-top: 1px dashed #6d97d4;
+        }
+        .cross-dot {
+          position: absolute;
+          left: calc(50% - 9px);
+          top: calc(50% - 9px);
+          width: 18px;
+          height: 18px;
+          background: #f2eee5;
+          border: 5px solid #165dff;
+          border-radius: 50%;
+        }
+        .spline {
+          fill: none;
+          stroke: #165dff;
+          stroke-width: 5;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        #sx2-markets-root {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          background: #071424;
+        }
+        #sx2-markets-type {
+          position: absolute;
+          left: 100px;
+          top: 255px;
+          width: 1070px;
+          font-size: 160px;
+          z-index: 3;
+        }
+        #sx2-markets-type .serif {
+          font-size: 170px;
+          color: #b5cbf6;
+        }
+        #sx2-markets-panel {
+          left: 1110px;
+          top: 185px;
+          width: 950px;
+          height: 805px;
+          border-radius: 0;
+        }
+        #sx2-markets-rail {
+          position: absolute;
+          left: 1044px;
+          top: 185px;
+          width: 12px;
+          height: 805px;
+          background: #165dff;
+          transform-origin: bottom;
+        }
+        #sx2-markets-footer {
+          position: absolute;
+          left: 104px;
+          bottom: 105px;
+          color: #b5cbf6;
+        }
+      </style>
+      <div
+        id="sx2-markets-root"
+        data-composition-id="sx2-markets"
+        data-width="1920"
+        data-height="1080"
+        data-duration="4"
+      >
+        <div class="stage">
+          <div class="chapter eyebrow">TRADINGVIEW / A NEW PERSPECTIVE</div>
+          <div class="scene-no mono">01 — 07</div>
+          <div class="hairline"></div>
+          <div id="sx2-markets-type">
+            <div class="mask"><div class="display word">Markets</div></div>
+            <div class="mask"><div class="serif word">never stand</div></div>
+            <div class="mask"><div class="serif word">still.</div></div>
+          </div>
+          <div id="sx2-markets-panel" class="panel">
+            <div class="panel-head"><span>ILLUSTRATIVE CHART</span><span>VIEW / 01</span></div>
+            <svg viewBox="0 0 1200 500" aria-hidden="true">
+              <line class="gridline" x1="0" y1="0" x2="0" y2="500" />
+              <line class="gridline" x1="120" y1="0" x2="120" y2="500" />
+              <line class="gridline" x1="240" y1="0" x2="240" y2="500" />
+              <line class="gridline" x1="360" y1="0" x2="360" y2="500" />
+              <line class="gridline" x1="480" y1="0" x2="480" y2="500" />
+              <line class="gridline" x1="600" y1="0" x2="600" y2="500" />
+              <line class="gridline" x1="720" y1="0" x2="720" y2="500" />
+              <line class="gridline" x1="840" y1="0" x2="840" y2="500" />
+              <line class="gridline" x1="960" y1="0" x2="960" y2="500" />
+              <line class="gridline" x1="1080" y1="0" x2="1080" y2="500" />
+              <line class="gridline" x1="1200" y1="0" x2="1200" y2="500" />
+              <line class="gridline" x1="0" y1="0" x2="1200" y2="0" />
+              <line class="gridline" x1="0" y1="100" x2="1200" y2="100" />
+              <line class="gridline" x1="0" y1="200" x2="1200" y2="200" />
+              <line class="gridline" x1="0" y1="300" x2="1200" y2="300" />
+              <line class="gridline" x1="0" y1="400" x2="1200" y2="400" />
+              <line class="gridline" x1="0" y1="500" x2="1200" y2="500" />
+              <g class="candle">
+                <line x1="25" y1="304.0" x2="25" y2="372.0" stroke="#E19B8C" stroke-width="2" />
+                <rect x="20" y="328.0" width="10" height="23.0" fill="#E19B8C" />
+                <rect x="20" y="450" width="10" height="20" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="46" y1="331.0" x2="46" y2="379.2" stroke="#65D7C4" stroke-width="2" />
+                <rect x="41" y="355.0" width="10" height="4.0" fill="#65D7C4" />
+                <rect x="41" y="444" width="10" height="26" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="67" y1="315.2" x2="67" y2="371.0" stroke="#65D7C4" stroke-width="2" />
+                <rect x="62" y="339.2" width="10" height="10.7" fill="#65D7C4" />
+                <rect x="62" y="438" width="10" height="32" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="88" y1="296.2" x2="88" y2="342.5" stroke="#65D7C4" stroke-width="2" />
+                <rect x="83" y="320.2" width="10" height="4.0" fill="#65D7C4" />
+                <rect x="83" y="432" width="10" height="38" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="109" y1="289.0" x2="109" y2="334.2" stroke="#65D7C4" stroke-width="2" />
+                <rect x="104" y="313.0" width="10" height="4.0" fill="#65D7C4" />
+                <rect x="104" y="426" width="10" height="44" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="130" y1="297.2" x2="130" y2="359.3" stroke="#65D7C4" stroke-width="2" />
+                <rect x="125" y="321.2" width="10" height="17.1" fill="#65D7C4" />
+                <rect x="125" y="420" width="10" height="50" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="151" y1="310.8" x2="151" y2="384.8" stroke="#65D7C4" stroke-width="2" />
+                <rect x="146" y="334.8" width="10" height="29.0" fill="#65D7C4" />
+                <rect x="146" y="414" width="10" height="56" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="172" y1="314.3" x2="172" y2="370.4" stroke="#65D7C4" stroke-width="2" />
+                <rect x="167" y="338.3" width="10" height="11.2" fill="#65D7C4" />
+                <rect x="167" y="450" width="10" height="20" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="193" y1="271.4" x2="193" y2="342.6" stroke="#E19B8C" stroke-width="2" />
+                <rect x="188" y="295.4" width="10" height="26.2" fill="#E19B8C" />
+                <rect x="188" y="444" width="10" height="26" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="214" y1="218.6" x2="214" y2="308.4" stroke="#E19B8C" stroke-width="2" />
+                <rect x="209" y="242.6" width="10" height="44.9" fill="#E19B8C" />
+                <rect x="209" y="438" width="10" height="32" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="235" y1="201.2" x2="235" y2="269.9" stroke="#E19B8C" stroke-width="2" />
+                <rect x="230" y="225.2" width="10" height="23.6" fill="#E19B8C" />
+                <rect x="230" y="432" width="10" height="38" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="256" y1="196.4" x2="256" y2="257.0" stroke="#65D7C4" stroke-width="2" />
+                <rect x="251" y="220.4" width="10" height="15.6" fill="#65D7C4" />
+                <rect x="251" y="426" width="10" height="44" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="277" y1="185.4" x2="277" y2="263.9" stroke="#65D7C4" stroke-width="2" />
+                <rect x="272" y="209.4" width="10" height="33.5" fill="#65D7C4" />
+                <rect x="272" y="420" width="10" height="50" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="298" y1="189.7" x2="298" y2="253.9" stroke="#65D7C4" stroke-width="2" />
+                <rect x="293" y="213.7" width="10" height="19.2" fill="#65D7C4" />
+                <rect x="293" y="414" width="10" height="56" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="319" y1="200.3" x2="319" y2="246.8" stroke="#E19B8C" stroke-width="2" />
+                <rect x="314" y="224.3" width="10" height="4.0" fill="#E19B8C" />
+                <rect x="314" y="450" width="10" height="20" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="340" y1="212.3" x2="340" y2="261.0" stroke="#E19B8C" stroke-width="2" />
+                <rect x="335" y="236.3" width="10" height="4.0" fill="#E19B8C" />
+                <rect x="335" y="444" width="10" height="26" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="361" y1="231.5" x2="361" y2="282.0" stroke="#65D7C4" stroke-width="2" />
+                <rect x="356" y="255.5" width="10" height="5.5" fill="#65D7C4" />
+                <rect x="356" y="438" width="10" height="32" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="382" y1="250.3" x2="382" y2="295.9" stroke="#65D7C4" stroke-width="2" />
+                <rect x="377" y="274.3" width="10" height="4.0" fill="#65D7C4" />
+                <rect x="377" y="432" width="10" height="38" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="403" y1="249.7" x2="403" y2="316.5" stroke="#E19B8C" stroke-width="2" />
+                <rect x="398" y="273.7" width="10" height="21.8" fill="#E19B8C" />
+                <rect x="398" y="426" width="10" height="44" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="424" y1="254.5" x2="424" y2="333.8" stroke="#E19B8C" stroke-width="2" />
+                <rect x="419" y="278.5" width="10" height="34.3" fill="#E19B8C" />
+                <rect x="419" y="420" width="10" height="50" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="445" y1="280.0" x2="445" y2="338.2" stroke="#E19B8C" stroke-width="2" />
+                <rect x="440" y="304.0" width="10" height="13.3" fill="#E19B8C" />
+                <rect x="440" y="414" width="10" height="56" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="466" y1="280.1" x2="466" y2="351.5" stroke="#65D7C4" stroke-width="2" />
+                <rect x="461" y="304.1" width="10" height="26.4" fill="#65D7C4" />
+                <rect x="461" y="450" width="10" height="20" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="487" y1="254.0" x2="487" y2="343.7" stroke="#65D7C4" stroke-width="2" />
+                <rect x="482" y="278.0" width="10" height="44.7" fill="#65D7C4" />
+                <rect x="482" y="444" width="10" height="26" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="508" y1="227.0" x2="508" y2="295.4" stroke="#65D7C4" stroke-width="2" />
+                <rect x="503" y="251.0" width="10" height="23.4" fill="#65D7C4" />
+                <rect x="503" y="438" width="10" height="32" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="529" y1="198.0" x2="529" y2="256.2" stroke="#E19B8C" stroke-width="2" />
+                <rect x="524" y="222.0" width="10" height="13.1" fill="#E19B8C" />
+                <rect x="524" y="432" width="10" height="38" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="550" y1="181.6" x2="550" y2="254.5" stroke="#E19B8C" stroke-width="2" />
+                <rect x="545" y="205.6" width="10" height="27.9" fill="#E19B8C" />
+                <rect x="545" y="426" width="10" height="44" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="571" y1="198.7" x2="571" y2="258.4" stroke="#E19B8C" stroke-width="2" />
+                <rect x="566" y="222.7" width="10" height="14.7" fill="#E19B8C" />
+                <rect x="566" y="420" width="10" height="50" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="592" y1="208.9" x2="592" y2="254.0" stroke="#65D7C4" stroke-width="2" />
+                <rect x="587" y="232.9" width="10" height="4.0" fill="#65D7C4" />
+                <rect x="587" y="414" width="10" height="56" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="613" y1="184.3" x2="613" y2="232.6" stroke="#E19B8C" stroke-width="2" />
+                <rect x="608" y="208.3" width="10" height="4.0" fill="#E19B8C" />
+                <rect x="608" y="450" width="10" height="20" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="634" y1="142.2" x2="634" y2="199.5" stroke="#E19B8C" stroke-width="2" />
+                <rect x="629" y="166.2" width="10" height="12.2" fill="#E19B8C" />
+                <rect x="629" y="444" width="10" height="26" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="655" y1="124.5" x2="655" y2="171.4" stroke="#E19B8C" stroke-width="2" />
+                <rect x="650" y="148.5" width="10" height="4.0" fill="#E19B8C" />
+                <rect x="650" y="438" width="10" height="32" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="676" y1="121.4" x2="676" y2="192.1" stroke="#65D7C4" stroke-width="2" />
+                <rect x="671" y="145.4" width="10" height="25.6" fill="#65D7C4" />
+                <rect x="671" y="432" width="10" height="38" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="697" y1="146.8" x2="697" y2="230.3" stroke="#65D7C4" stroke-width="2" />
+                <rect x="692" y="170.8" width="10" height="38.6" fill="#65D7C4" />
+                <rect x="692" y="426" width="10" height="44" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="718" y1="192.5" x2="718" y2="252.6" stroke="#65D7C4" stroke-width="2" />
+                <rect x="713" y="216.5" width="10" height="15.1" fill="#65D7C4" />
+                <rect x="713" y="420" width="10" height="50" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="739" y1="211.7" x2="739" y2="282.4" stroke="#E19B8C" stroke-width="2" />
+                <rect x="734" y="235.7" width="10" height="25.7" fill="#E19B8C" />
+                <rect x="734" y="414" width="10" height="56" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="760" y1="218.1" x2="760" y2="306.2" stroke="#E19B8C" stroke-width="2" />
+                <rect x="755" y="242.1" width="10" height="43.2" fill="#E19B8C" />
+                <rect x="755" y="450" width="10" height="20" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="781" y1="234.5" x2="781" y2="301.8" stroke="#E19B8C" stroke-width="2" />
+                <rect x="776" y="258.5" width="10" height="22.3" fill="#E19B8C" />
+                <rect x="776" y="444" width="10" height="26" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="802" y1="232.5" x2="802" y2="288.0" stroke="#65D7C4" stroke-width="2" />
+                <rect x="797" y="256.5" width="10" height="10.5" fill="#65D7C4" />
+                <rect x="797" y="438" width="10" height="32" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="823" y1="205.0" x2="823" y2="271.5" stroke="#65D7C4" stroke-width="2" />
+                <rect x="818" y="229.0" width="10" height="21.5" fill="#65D7C4" />
+                <rect x="818" y="432" width="10" height="38" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="844" y1="187.2" x2="844" y2="241.7" stroke="#65D7C4" stroke-width="2" />
+                <rect x="839" y="211.2" width="10" height="9.5" fill="#65D7C4" />
+                <rect x="839" y="426" width="10" height="44" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="865" y1="181.3" x2="865" y2="227.2" stroke="#65D7C4" stroke-width="2" />
+                <rect x="860" y="205.3" width="10" height="4.0" fill="#65D7C4" />
+                <rect x="860" y="420" width="10" height="50" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="886" y1="179.1" x2="886" y2="234.1" stroke="#65D7C4" stroke-width="2" />
+                <rect x="881" y="203.1" width="10" height="10.1" fill="#65D7C4" />
+                <rect x="881" y="414" width="10" height="56" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="907" y1="170.5" x2="907" y2="234.2" stroke="#65D7C4" stroke-width="2" />
+                <rect x="902" y="194.5" width="10" height="18.8" fill="#65D7C4" />
+                <rect x="902" y="450" width="10" height="20" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="928" y1="151.9" x2="928" y2="200.2" stroke="#65D7C4" stroke-width="2" />
+                <rect x="923" y="175.9" width="10" height="4.0" fill="#65D7C4" />
+                <rect x="923" y="444" width="10" height="26" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="949" y1="100.2" x2="949" y2="173.8" stroke="#E19B8C" stroke-width="2" />
+                <rect x="944" y="124.2" width="10" height="28.6" fill="#E19B8C" />
+                <rect x="944" y="438" width="10" height="32" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="970" y1="69.0" x2="970" y2="155.7" stroke="#E19B8C" stroke-width="2" />
+                <rect x="965" y="93.0" width="10" height="41.7" fill="#E19B8C" />
+                <rect x="965" y="432" width="10" height="38" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="991" y1="87.7" x2="991" y2="149.2" stroke="#E19B8C" stroke-width="2" />
+                <rect x="986" y="111.7" width="10" height="16.5" fill="#E19B8C" />
+                <rect x="986" y="426" width="10" height="44" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="1012" y1="108.7" x2="1012" y2="177.9" stroke="#65D7C4" stroke-width="2" />
+                <rect x="1007" y="132.7" width="10" height="24.2" fill="#65D7C4" />
+                <rect x="1007" y="420" width="10" height="50" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="1033" y1="118.6" x2="1033" y2="203.9" stroke="#65D7C4" stroke-width="2" />
+                <rect x="1028" y="142.6" width="10" height="40.3" fill="#65D7C4" />
+                <rect x="1028" y="414" width="10" height="56" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="1054" y1="129.4" x2="1054" y2="194.8" stroke="#65D7C4" stroke-width="2" />
+                <rect x="1049" y="153.4" width="10" height="20.4" fill="#65D7C4" />
+                <rect x="1049" y="450" width="10" height="20" fill="#65D7C4" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="1075" y1="133.5" x2="1075" y2="186.2" stroke="#E19B8C" stroke-width="2" />
+                <rect x="1070" y="157.5" width="10" height="7.7" fill="#E19B8C" />
+                <rect x="1070" y="444" width="10" height="26" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="1096" y1="143.3" x2="1096" y2="202.8" stroke="#E19B8C" stroke-width="2" />
+                <rect x="1091" y="167.3" width="10" height="14.5" fill="#E19B8C" />
+                <rect x="1091" y="438" width="10" height="32" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="1117" y1="176.4" x2="1117" y2="225.2" stroke="#E19B8C" stroke-width="2" />
+                <rect x="1112" y="200.4" width="10" height="4.0" fill="#E19B8C" />
+                <rect x="1112" y="432" width="10" height="38" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="1138" y1="200.8" x2="1138" y2="247.4" stroke="#E19B8C" stroke-width="2" />
+                <rect x="1133" y="224.8" width="10" height="4.0" fill="#E19B8C" />
+                <rect x="1133" y="426" width="10" height="44" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="1159" y1="196.3" x2="1159" y2="257.7" stroke="#E19B8C" stroke-width="2" />
+                <rect x="1154" y="220.3" width="10" height="16.4" fill="#E19B8C" />
+                <rect x="1154" y="420" width="10" height="50" fill="#E19B8C" opacity=".22" />
+              </g>
+              <g class="candle">
+                <line x1="1180" y1="175.9" x2="1180" y2="245.7" stroke="#E19B8C" stroke-width="2" />
+                <rect x="1175" y="199.9" width="10" height="24.9" fill="#E19B8C" />
+                <rect x="1175" y="414" width="10" height="56" fill="#E19B8C" opacity=".22" />
+              </g>
+            </svg>
+            <div class="chart-note illustrative">ILLUSTRATIVE · NOT LIVE DATA</div>
+          </div>
+          <div id="sx2-markets-rail"></div>
+          <div id="sx2-markets-footer" class="mono">A WORLD IN CONSTANT MOTION.</div>
+        </div>
+      </div>
+      <script>
+        (() => {
+          const tl = gsap.timeline({ paused: true });
+          const E = (s, a, b, t) => tl.fromTo(s, a, { ...b, immediateRender: false }, t);
+          E(
+            "#sx2-markets-type .word",
+            { y: 220 },
+            { y: 0, duration: 0.85, stagger: 0.15, ease: "power4.out" },
+            0.15,
+          );
+          E(
+            "#sx2-markets-rail",
+            { scaleY: 0 },
+            { scaleY: 1, duration: 1.1, ease: "power3.inOut" },
+            0,
+          );
+          E(
+            "#sx2-markets-panel",
+            { x: 250, y: 40, rotationY: -24, rotationX: 8, opacity: 0 },
+            {
+              x: 0,
+              y: 0,
+              rotationY: -8,
+              rotationX: 0,
+              opacity: 1,
+              duration: 1.35,
+              ease: "power3.out",
+            },
+            0.1,
+          );
+          E(
+            "#sx2-markets-panel .candle",
+            { scaleY: 0.2, opacity: 0 },
+            {
+              scaleY: 1,
+              opacity: 1,
+              duration: 0.65,
+              stagger: 0.022,
+              transformOrigin: "center bottom",
+              ease: "power2.out",
+            },
+            0.6,
+          );
+          tl.to(
+            "#sx2-markets-panel",
+            { x: -75, y: -30, scale: 1.05, duration: 1.8, ease: "sine.inOut" },
+            2.1,
+          );
+          window.__timelines = window.__timelines || {};
+          window.__timelines["sx2-markets"] = tl;
+        })();
+      </script></template
+    >
+  </body>
+</html>

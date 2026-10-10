@@ -1,0 +1,65 @@
+{
+  "id": "studiox-v2",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "duration": 30,
+  "palette": {
+    "ink": "#071424",
+    "blue": "#165DFF",
+    "ivory": "#F2EEE5"
+  },
+  "scenes": [
+    {
+      "id": "sx2-markets",
+      "start": 0,
+      "duration": 4,
+      "copy": "Markets never stand still.",
+      "file": "compositions/sx2-markets.html"
+    },
+    {
+      "id": "sx2-picture",
+      "start": 4,
+      "duration": 4,
+      "copy": "See the whole picture.",
+      "file": "compositions/sx2-picture.html"
+    },
+    {
+      "id": "sx2-perspective",
+      "start": 8,
+      "duration": 4.5,
+      "copy": "Find your perspective.",
+      "file": "compositions/sx2-perspective.html"
+    },
+    {
+      "id": "sx2-moment",
+      "start": 12.5,
+      "duration": 4.5,
+      "copy": "Stay in the moment.",
+      "file": "compositions/sx2-moment.html"
+    },
+    {
+      "id": "sx2-montage",
+      "start": 17,
+      "duration": 4,
+      "copy": "Chart. Explore. Connect.",
+      "file": "compositions/sx2-montage.html"
+    },
+    {
+      "id": "sx2-product",
+      "start": 21,
+      "duration": 4,
+      "copy": "TradingView",
+      "file": "compositions/sx2-product.html"
+    },
+    {
+      "id": "sx2-close",
+      "start": 25,
+      "duration": 5,
+      "copy": "Great ideas should move faster.",
+      "file": "compositions/sx2-close.html"
+    }
+  ],
+  "source": "TradingView public homepage chart asset; additional vectors are illustrative",
+  "credit": "Catalyst \u2014 Scott Buckley \u00b7 CC BY 4.0 \u00b7 scottbuckley.com.au"
+}

@@ -1,0 +1,172 @@
+{
+  "music": {
+    "track": "Catalyst",
+    "composer": "Scott Buckley",
+    "sourceIn": 80,
+    "duration": 30,
+    "license": "CC BY 4.0",
+    "changes": "excerpt, fades and original SFX"
+  },
+  "target": {
+    "integratedLUFS": -14,
+    "truePeakDbTP": -1.5
+  },
+  "events": [
+    {
+      "time": 0.06,
+      "kind": "low impact / transient",
+      "gain": 0.154,
+      "pan": 0
+    },
+    {
+      "time": 0.28,
+      "kind": "glass detail",
+      "gain": 0.055,
+      "pan": -0.3
+    },
+    {
+      "time": 0.7,
+      "kind": "interface click",
+      "gain": 0.1,
+      "pan": -0.65
+    },
+    {
+      "time": 1.05,
+      "kind": "interface click",
+      "gain": 0.1,
+      "pan": 0.45
+    },
+    {
+      "time": 6.3,
+      "kind": "interface click",
+      "gain": 0.1,
+      "pan": 0.4
+    },
+    {
+      "time": 9.3,
+      "kind": "interface click",
+      "gain": 0.1,
+      "pan": -0.4
+    },
+    {
+      "time": 10.2,
+      "kind": "interface click",
+      "gain": 0.1,
+      "pan": 0.4
+    },
+    {
+      "time": 12.55,
+      "kind": "interface click",
+      "gain": 0.1,
+      "pan": 0
+    },
+    {
+      "time": 14.1,
+      "kind": "interface click",
+      "gain": 0.1,
+      "pan": 0.4
+    },
+    {
+      "time": 3.6,
+      "kind": "directional swish",
+      "gain": 0.25,
+      "pan": -0.4
+    },
+    {
+      "time": 7.55,
+      "kind": "directional swish",
+      "gain": 0.25,
+      "pan": 0.45
+    },
+    {
+      "time": 12.05,
+      "kind": "directional swish",
+      "gain": 0.25,
+      "pan": -0.45
+    },
+    {
+      "time": 16.4,
+      "kind": "directional swish",
+      "gain": 0.25,
+      "pan": 0.4
+    },
+    {
+      "time": 20.4,
+      "kind": "directional swish",
+      "gain": 0.25,
+      "pan": -0.2
+    },
+    {
+      "time": 24.45,
+      "kind": "directional swish",
+      "gain": 0.25,
+      "pan": 0.1
+    },
+    {
+      "time": 4,
+      "kind": "low impact / transient",
+      "gain": 0.187,
+      "pan": 0
+    },
+    {
+      "time": 8,
+      "kind": "low impact / transient",
+      "gain": 0.198,
+      "pan": -0.1
+    },
+    {
+      "time": 17,
+      "kind": "low impact / transient",
+      "gain": 0.231,
+      "pan": 0
+    },
+    {
+      "time": 18.33,
+      "kind": "low impact / transient",
+      "gain": 0.14300000000000002,
+      "pan": -0.3
+    },
+    {
+      "time": 19.67,
+      "kind": "low impact / transient",
+      "gain": 0.187,
+      "pan": 0.3
+    },
+    {
+      "time": 21,
+      "kind": "low impact / transient",
+      "gain": 0.253,
+      "pan": 0
+    },
+    {
+      "time": 25,
+      "kind": "low impact / transient",
+      "gain": 0.14300000000000002,
+      "pan": 0
+    },
+    {
+      "time": 23.1,
+      "kind": "glass detail",
+      "gain": 0.055,
+      "pan": 0.3
+    },
+    {
+      "time": 25.2,
+      "kind": "glass detail",
+      "gain": 0.055,
+      "pan": -0.2
+    }
+  ],
+  "premasterAnalysis": {
+    "input_i": "-16.31",
+    "input_tp": "-2.04",
+    "input_lra": "9.00",
+    "input_thresh": "-26.59",
+    "output_i": "-13.68",
+    "output_tp": "-1.50",
+    "output_lra": "6.20",
+    "output_thresh": "-23.78",
+    "normalization_type": "dynamic",
+    "target_offset": "-0.32"
+  }
+}

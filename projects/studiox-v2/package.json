@@ -1,0 +1,22 @@
+{
+  "name": "studiox-viewport-tradingview-film",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A cinematic independent TradingView concept film created by StudioX Viewport",
+  "scripts": {
+    "assets": "node scripts/prepare-assets.mjs",
+    "visuals": "python3 build_visuals.py && python3 scripts/refine-moment.py",
+    "lint": "hyperframes lint",
+    "check": "hyperframes check --samples 21",
+    "preview": "hyperframes preview",
+    "render": "hyperframes render --fps 30 --quality delivery --output renders/StudioX-Viewport-TradingView.mp4"
+  },
+  "dependencies": {
+    "gsap": "3.14.2",
+    "hyperframes": "0.8.145",
+    "sharp": "0.35.5"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
