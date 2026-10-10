@@ -37,7 +37,7 @@ html = r'''<!doctype html><html lang="en"><head><meta charset="utf-8"><title>sx2
 <div id="sx2-moment-note">ILLUSTRATIVE CHART · NOT LIVE DATA</div>
 </div></div><script>(()=>{
 const tl=gsap.timeline({paused:true});
-const E=(s,a,b,t)=>tl.fromTo(s,a,{...b,immediateRender:false},t);
+const E=(s,a,b,t)=>tl.fromTo(s,a,{...b,immediateRender:true},t);
 E('#sx2-moment-title .word',{y:145},{y:0,duration:.62,stagger:.12,ease:'power4.out'},.05);
 E('#sx2-moment-focus',{opacity:0,y:10},{opacity:1,y:0,duration:.5,ease:'power2.out'},.45);
 E('#sx2-moment-world',{x:65,y:20,scale:1.01},{x:-95,y:-15,scale:1.08,svgOrigin:'1080 760',duration:3.6,ease:'sine.inOut'},.1);

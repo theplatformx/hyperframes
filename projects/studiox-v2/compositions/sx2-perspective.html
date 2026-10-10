@@ -643,7 +643,7 @@
       <script>
         (() => {
           const tl = gsap.timeline({ paused: true });
-          const E = (s, a, b, t) => tl.fromTo(s, a, { ...b, immediateRender: false }, t);
+          const E = (s, a, b, t) => tl.fromTo(s, a, { ...b, immediateRender: true }, t);
           E(
             "#sx2-perspective-title .word",
             { y: 180 },
