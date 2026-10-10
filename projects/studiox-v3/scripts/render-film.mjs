@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir, unlink } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, unlink, rename } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -12,6 +12,7 @@ await writeFile(videoEntry, source.replace(audio, ''));
 await mkdir(path.join(root, 'renders'), {recursive:true});
 const silent = path.join(root, 'renders', 'StudioX-Viewport-Picture.mp4');
 const final = path.join(root, 'renders', 'StudioX-Viewport-Motion-Study.mp4');
+const muxed = path.join(root, 'renders', 'StudioX-Viewport-Motion-Study.tmp.mp4');
 const hyperframes = path.join(root, 'node_modules', '.bin', 'hyperframes');
 try {
   execFileSync(hyperframes, ['render', '--composition', 'index-video.html',
@@ -23,5 +24,14 @@ try {
 execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', silent,
   '-i', path.join(root, 'assets', 'score.wav'), '-map', '0:v:0', '-map', '1:a:0',
   '-c:v', 'copy', '-c:a', 'aac', '-b:a', '256k', '-ar', '48000',
-  '-t', '30', '-movflags', '+faststart', final], {cwd:root,stdio:'inherit'});
+  '-t', '30', '-movflags', '+faststart', muxed], {cwd:root,stdio:'inherit'});
+const probe = JSON.parse(execFileSync('ffprobe', ['-v', 'error', '-show_entries',
+  'format=duration', '-show_entries', 'stream=codec_name', '-of', 'json', muxed],
+{cwd:root,encoding:'utf8'}));
+if (Math.abs(Number(probe.format?.duration) - 30) > 0.04 ||
+    !probe.streams?.some(s => s.codec_name === 'h264') ||
+    !probe.streams?.some(s => s.codec_name === 'aac')) {
+  throw new Error('Muxed export failed duration or stream verification');
+}
+await rename(muxed, final);
 console.log(`Delivered ${final}`);
