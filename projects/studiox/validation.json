@@ -1,0 +1,36 @@
+{
+  "engine": "hyperframes@0.8.145",
+  "browser": "chrome-headless-shell 152.0.7977.30",
+  "canvas": [
+    1920,
+    1080
+  ],
+  "fps": 30,
+  "duration": 30,
+  "expectedFrames": 900,
+  "browserGate": {
+    "ok": true,
+    "browserSkipped": false,
+    "staticWarnings": 11,
+    "runtimeErrors": 0,
+    "layoutErrors": 0,
+    "layoutWarnings": 0,
+    "motionAssertionsPassed": true,
+    "contrastErrors": 0
+  },
+  "securityAudit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "limitations": [
+    "First 30-second concept only; no matched model benchmark.",
+    "Single-timeline composition retains structural lint warnings.",
+    "Local cold setup and software GPU are not representative of warmed GPU render performance.",
+    "4K source configuration exists but only the 1080p export is validated in this run.",
+    "Hyperframes registry network refresh and subscription usage were unavailable."
+  ]
+}

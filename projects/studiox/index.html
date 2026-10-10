@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>StudioX — Great ideas should move faster</title>
+    <style>
+      @font-face {
+        font-family: "StudioDisplay";
+        src: url("assets/Display.ttf") format("truetype");
+        font-style: normal;
+        font-weight: 700;
+        font-display: block;
+      }
+      @font-face {
+        font-family: "StudioMono";
+        src: url("assets/Mono.ttf") format("truetype");
+        font-style: normal;
+        font-weight: 400;
+        font-display: block;
+      }
+    </style>
+    <link rel="stylesheet" href="style.css" />
+    <script src="assets/gsap.min.js"></script>
+  </head>
+  <body>
+    <div
+      data-hf-id="hf-uhlq"
+      id="root"
+      data-composition-id="studiox"
+      data-start="0"
+      data-duration="30"
+      data-width="1920"
+      data-height="1080"
+      data-fps="30"
+    >
+      <div
+        data-hf-id="hf-wb4n"
+        id="studiox-surface"
+        class="clip surface"
+        data-start="0"
+        data-duration="30"
+        data-track-index="0"
+        aria-hidden="true"
+      ></div>
+      <section
+        data-hf-id="hf-bbbi"
+        id="scene-idea"
+        class="clip scene"
+        data-start="0"
+        data-duration="3"
+        data-track-index="1"
+      >
+        <div data-hf-id="hf-e18w" class="idea-lockup">
+          <div data-hf-id="hf-59zg" id="idea-title" class="display" data-copy="idea:0"></div>
+          <div data-hf-id="hf-s2rm" id="idea-bar" class="signal-bar" aria-hidden="true"></div>
+        </div>
+      </section>
+      <section
+        data-hf-id="hf-fg65"
+        id="scene-wait"
+        class="clip scene"
+        data-start="3"
+        data-duration="3"
+        data-track-index="1"
+      >
+        <div data-hf-id="hf-cf7u" class="wait-lockup">
+          <div data-hf-id="hf-ngaz" class="line-mask">
+            <div
+              data-hf-id="hf-y2zu"
+              id="wait-title"
+              class="display wait-heading"
+              data-copy="wait:0"
+            ></div>
+          </div>
+          <div data-hf-id="hf-zw28" class="wait-word-frame">
+            <div data-hf-id="hf-3ph5" id="wait-word" class="display" data-copy="wait:1"></div>
+            <div data-hf-id="hf-6tbw" id="wait-bar" class="signal-bar" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+      <section
+        data-hf-id="hf-pinf"
+        id="scene-cut"
+        class="clip scene"
+        data-start="6"
+        data-duration="3"
+        data-track-index="1"
+      >
+        <div data-hf-id="hf-ylpe" id="cut-flash" class="full-flash" aria-hidden="true"></div>
+        <div
+          data-hf-id="hf-ewre"
+          id="cut-slash"
+          data-layout-allow-overflow=""
+          class="signal-bar"
+          aria-hidden="true"
+        ></div>
+        <div data-hf-id="hf-qep9" class="cut-title-frame">
+          <div data-hf-id="hf-5a7w" id="cut-title" class="display" data-copy="cut:0"></div>
+        </div>
+        <div data-hf-id="hf-rsm8" id="cut-rule" class="signal-bar" aria-hidden="true"></div>
+      </section>
+      <section
+        data-hf-id="hf-fhvs"
+        id="scene-move"
+        class="clip scene"
+        data-start="9"
+        data-duration="4"
+        data-track-index="1"
+      >
+        <div data-hf-id="hf-mdm6" class="move-lockup">
+          <div data-hf-id="hf-5odn" class="line-mask">
+            <div data-hf-id="hf-wrws" id="move-title" class="display" data-copy="move:0"></div>
+          </div>
+          <div data-hf-id="hf-yzec" class="move-word-frame">
+            <div
+              data-hf-id="hf-8kb2"
+              id="move-echo-3"
+              class="display move-echo"
+              data-copy="move:1"
+              aria-hidden="true"
+            ></div>
+            <div
+              data-hf-id="hf-cif3"
+              id="move-echo-2"
+              class="display move-echo"
+              data-copy="move:1"
+              aria-hidden="true"
+            ></div>
+            <div
+              data-hf-id="hf-3uj8"
+              id="move-echo-1"
+              class="display move-echo"
+              data-copy="move:1"
+              aria-hidden="true"
+            ></div>
+            <div data-hf-id="hf-nzut" id="move-word" class="display" data-copy="move:1"></div>
+          </div>
+        </div>
+        <div data-hf-id="hf-t0vk" id="move-path" class="signal-bar" aria-hidden="true"></div>
+        <div data-hf-id="hf-1zwo" id="move-tip" class="signal-bar" aria-hidden="true"></div>
+      </section>
+      <section
+        data-hf-id="hf-zo1d"
+        id="scene-sharper"
+        class="clip scene"
+        data-start="13"
+        data-duration="1.7"
+        data-track-index="1"
+      >
+        <div data-hf-id="hf-8ibp" class="sharp-stage">
+          <div
+            data-hf-id="hf-a7j7"
+            id="sharp-base"
+            data-layout-allow-overlap=""
+            class="display feature-title"
+            data-copy="sharper:0"
+          ></div>
+          <div
+            data-hf-id="hf-poj1"
+            id="sharp-top"
+            data-layout-allow-overlap=""
+            class="display feature-title sharp-slice sharp-top"
+            data-copy="sharper:0"
+            aria-hidden="true"
+          ></div>
+          <div
+            data-hf-id="hf-s7bx"
+            id="sharp-bottom"
+            data-layout-allow-overlap=""
+            class="display feature-title sharp-slice sharp-bottom"
+            data-copy="sharper:0"
+            aria-hidden="true"
+          ></div>
+        </div>
+        <div data-hf-id="hf-0ot8" id="sharp-rule" class="signal-bar" aria-hidden="true"></div>
+      </section>
+      <section
+        data-hf-id="hf-t3u4"
+        id="scene-bolder"
+        class="clip scene light-scene"
+        data-start="14.7"
+        data-duration="1.6"
+        data-track-index="1"
+      >
+        <div
+          data-hf-id="hf-zc20"
+          id="bold-title"
+          class="display feature-title"
+          data-copy="bolder:0"
+        ></div>
+        <div data-hf-id="hf-prpd" id="bold-rule" class="dark-bar" aria-hidden="true"></div>
+      </section>
+      <section
+        data-hf-id="hf-iix7"
+        id="scene-faster"
+        class="clip scene"
+        data-start="16.3"
+        data-duration="1.7"
+        data-track-index="1"
+      >
+        <div data-hf-id="hf-kdyb" id="faster-streaks" aria-hidden="true">
+          <i data-hf-id="hf-wt6k"></i><i data-hf-id="hf-zeb8"></i><i data-hf-id="hf-y7e5"></i
+          ><i data-hf-id="hf-ylp6"></i><i data-hf-id="hf-0l8b"></i><i data-hf-id="hf-0zjc"></i>
+        </div>
+        <div
+          data-hf-id="hf-v6vg"
+          id="fast-title"
+          class="display feature-title"
+          data-copy="faster:0"
+        ></div>
+      </section>
+      <section
+        data-hf-id="hf-ejhc"
+        id="scene-impact"
+        class="clip scene"
+        data-start="18"
+        data-duration="5"
+        data-track-index="1"
+      >
+        <div data-hf-id="hf-hqg5" class="impact-lockup">
+          <div data-hf-id="hf-5a2m" class="line-mask">
+            <div data-hf-id="hf-m0oc" id="impact-first" class="display" data-copy="impact:0"></div>
+          </div>
+          <div data-hf-id="hf-4vrl" class="line-mask">
+            <div data-hf-id="hf-aych" id="impact-second" class="display" data-copy="impact:1"></div>
+          </div>
+        </div>
+        <div data-hf-id="hf-ymgw" class="impact-field" aria-hidden="true">
+          <div data-hf-id="hf-766q" id="impact-outline"></div>
+          <div data-hf-id="hf-ut4a" class="impact-piece" id="piece-0"></div>
+          <div data-hf-id="hf-yr8b" class="impact-piece" id="piece-1"></div>
+          <div data-hf-id="hf-q3cg" class="impact-piece" id="piece-2"></div>
+          <div data-hf-id="hf-qv09" class="impact-piece" id="piece-3"></div>
+          <div data-hf-id="hf-i74e" class="impact-piece" id="piece-4"></div>
+          <div data-hf-id="hf-m58f" class="impact-piece" id="piece-5"></div>
+          <div data-hf-id="hf-esd9" id="impact-solid"></div>
+        </div>
+      </section>
+      <section
+        data-hf-id="hf-u5x9"
+        id="scene-reveal"
+        class="clip scene"
+        data-start="23"
+        data-duration="3"
+        data-track-index="1"
+      >
+        <div data-hf-id="hf-umee" class="brand-lockup">
+          <div
+            data-hf-id="hf-8k1u"
+            id="reveal-word"
+            class="display brand-word"
+            data-copy="reveal:0"
+          ></div>
+          <div data-hf-id="hf-pgtl" class="brand-x" aria-label="X">
+            <div data-hf-id="hf-2mpz" id="reveal-stroke-a" class="x-stroke"></div>
+            <div data-hf-id="hf-tyu4" id="reveal-stroke-b" class="x-stroke"></div>
+          </div>
+        </div>
+        <div data-hf-id="hf-k6ho" id="reveal-baseline" class="signal-bar" aria-hidden="true"></div>
+      </section>
+      <section
+        data-hf-id="hf-gzv1"
+        id="scene-finale"
+        class="clip scene"
+        data-start="26"
+        data-duration="4"
+        data-track-index="1"
+      >
+        <div data-hf-id="hf-9g16" class="brand-lockup">
+          <div data-hf-id="hf-2xvm" class="display brand-word" data-copy="finale:0"></div>
+          <div data-hf-id="hf-2hr1" class="brand-x" aria-label="X">
+            <div data-hf-id="hf-j2ga" class="x-stroke x-static-a"></div>
+            <div data-hf-id="hf-cwqh" class="x-stroke x-static-b"></div>
+          </div>
+        </div>
+        <div data-hf-id="hf-b1nr" id="final-tagline" data-copy="finale:1"></div>
+        <div data-hf-id="hf-lsz0" id="final-rule" class="signal-bar" aria-hidden="true"></div>
+      </section>
+      <audio
+        data-hf-id="hf-wbzz"
+        id="studiox-soundtrack"
+        class="clip"
+        src="assets/soundtrack.wav"
+        data-start="0"
+        data-duration="30"
+        data-track-index="10"
+        data-volume="1"
+        preload="auto"
+      ></audio>
+    </div>
+    <script id="studiox-storyboard" type="application/json">
+      {
+        "id": "studiox",
+        "title": "StudioX — Great ideas should move faster",
+        "width": 1920,
+        "height": 1080,
+        "fps": 30,
+        "duration": 30,
+        "palette": { "ink": "#101112", "paper": "#F3F0E8", "signal": "#DFFF00" },
+        "audio": { "source": "assets/soundtrack.wav", "start": 0, "duration": 30, "track": 10 },
+        "scenes": [
+          {
+            "id": "idea",
+            "start": 0,
+            "duration": 3,
+            "copy": ["An idea."],
+            "motif": "cursor",
+            "cues": { "bar": 0, "title": 0.25, "underline": 2.2 }
+          },
+          {
+            "id": "wait",
+            "start": 3,
+            "duration": 3,
+            "copy": ["Shouldn’t take", "forever."],
+            "motif": "underline",
+            "cues": { "title": 0.06, "word": 0.24, "stretch": 0.7 }
+          },
+          {
+            "id": "cut",
+            "start": 6,
+            "duration": 3,
+            "copy": ["Cut the wait."],
+            "motif": "slash",
+            "cues": { "flash": 0, "slash": 0.04, "title": 0.23 }
+          },
+          {
+            "id": "move",
+            "start": 9,
+            "duration": 4,
+            "copy": ["Make it", "move."],
+            "motif": "trajectory",
+            "cues": { "title": 0.06, "echo": 0.44, "word": 0.53, "line": 1.1 }
+          },
+          {
+            "id": "sharper",
+            "start": 13,
+            "duration": 1.7,
+            "copy": ["SHARPER"],
+            "motif": "slices",
+            "cues": { "title": 0, "slices": 0.08, "line": 0.4 }
+          },
+          {
+            "id": "bolder",
+            "start": 14.7,
+            "duration": 1.6,
+            "copy": ["BOLDER"],
+            "motif": "scale",
+            "cues": { "title": 0, "line": 0.3 }
+          },
+          {
+            "id": "faster",
+            "start": 16.3,
+            "duration": 1.7,
+            "copy": ["FASTER"],
+            "motif": "streaks",
+            "cues": { "title": 0, "streaks": 0.02 }
+          },
+          {
+            "id": "impact",
+            "start": 18,
+            "duration": 5,
+            "copy": ["From first spark", "to full impact."],
+            "motif": "convergence",
+            "cues": { "title": 0.08, "second": 0.6, "converge": 1.35, "resolve": 3.2 }
+          },
+          {
+            "id": "reveal",
+            "start": 23,
+            "duration": 3,
+            "copy": ["Studio"],
+            "motif": "crossing X",
+            "cues": { "word": 0.18, "strokeA": 0, "strokeB": 0.2, "lock": 0.8 }
+          },
+          {
+            "id": "finale",
+            "start": 26,
+            "duration": 4,
+            "copy": ["Studio", "Great ideas should move faster."],
+            "motif": "logo lockup",
+            "cues": { "tagline": 0.04, "rule": 0.15 }
+          }
+        ]
+      }
+    </script>
+    <script src="motion.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["studiox"] = window.buildStudioXTimeline();
+    </script>
+  </body>
+</html>
